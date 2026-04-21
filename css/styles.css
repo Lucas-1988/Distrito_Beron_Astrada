@@ -582,3 +582,80 @@ to {
 .lightbox-close:hover {
   color: var(--accent); /* Usa tu variable de color dorado/acento */
 }
+
+/* ====================================================
+   DISEÑO RESPONSIVE (MÓVILES Y TABLETS)
+==================================================== */
+@media (max-width: 768px) {
+  
+  /* 1. Permitimos scroll vertical dentro de cada slide */
+  .slide {
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-bottom: 80px; /* Evita que el texto quede tapado por la botonera */
+  }
+
+  /* 2. Ajustes de la portada */
+  .cover-content {
+    padding: 0 25px;
+  }
+  
+  /* 3. Rompemos las columnas: apilamos texto arriba e imagen abajo */
+  .slide-split {
+    flex-direction: column;
+  }
+  .split-left {
+    width: 100%;
+    padding: 40px 25px 30px 25px;
+    border-right: none;
+    flex: none; /* Deja que el texto ocupe el alto que necesite */
+  }
+  .split-right {
+    width: 100%;
+    height: 350px; /* Le damos una altura fija a las fotos en el celu */
+    flex: none;
+  }
+
+  /* 4. Grillas de imágenes (Sección 3 y Etapas) */
+  #s12 .right {
+    grid-template-columns: 1fr; /* Forzamos a una sola columna */
+    grid-template-rows: auto;
+    padding: 0 20px 20px 20px;
+    height: auto;
+  }
+  /* Evitamos que la primera foto intente ocupar 2 columnas que ya no existen */
+  #s12 .right .img-zone:first-child {
+    grid-column: span 1; 
+  }
+  #s12 .right .img-zone {
+    height: 250px; 
+  }
+
+  /* 5. Slides de Antes y Después (Grid 2) */
+  .slide-grid2 {
+    grid-template-columns: 1fr; /* Apila el "antes" arriba y el "después" abajo */
+    grid-template-rows: 1fr 1fr;
+  }
+
+  /* 6. Carteles de Separación (Dividers) */
+  .slide-divider {
+    padding: 40px 20px;
+  }
+
+  /* 7. Ajustes de la botonera inferior */
+  .nav {
+    width: 90%; /* La hacemos más ancha para que sea fácil tocar los botones */
+    justify-content: space-between; /* Separa los botones a los bordes */
+    bottom: 15px;
+  }
+  .slide-counter {
+    display: none; /* Ocultamos los números (01/31) en celu para ganar espacio */
+  }
+
+  /* 8. Ajustes del Botón de cerrar del Lightbox */
+  .lightbox-close {
+    top: 15px;
+    right: 20px;
+    font-size: 35px;
+  }
+}
