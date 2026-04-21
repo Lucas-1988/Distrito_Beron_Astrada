@@ -1,0 +1,584 @@
+/* ====================================================
+   Distrito Guaraní 
+==================================================== */
+
+*,*::before,*::after {
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+
+}
+
+:root {
+  --black:#0A0A0A;
+  --white:#FAFAFA;
+  --gray:#555;
+  --light:#EEE;
+  --accent:#C8A96E;
+
+}
+
+body {
+  background:var(--black);
+  font-family:'DM Sans',sans-serif;
+  overflow:hidden;
+  height:100vh;
+
+}
+
+.deck {
+  width:100vw;
+  height:100vh;
+  position:relative;
+  overflow:hidden;
+
+}
+
+.slide {
+  position:absolute;
+  inset:0;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .5s ease,transform .5s ease;
+  transform:translateX(30px);
+  display:flex;
+
+}
+
+.slide.active {
+  opacity:1;
+  pointer-events:all;
+  transform:translateX(0);
+
+}
+
+.slide.prev {
+  transform:translateX(-30px);
+
+}
+
+/* COVER */
+.slide-cover {
+  background:var(--black);
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:center;
+  /*overflow:hidden;*/
+
+}
+
+.cover-img {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:.32;
+  filter:grayscale(100%);
+
+}
+
+.cover-content {
+  position:relative;
+  z-index:2;
+  padding:0 80px;
+  max-width:760px;
+
+}
+
+.cover-eyebrow {
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:5px;
+  color:var(--accent);
+  text-transform:uppercase;
+  margin-bottom:20px;
+
+}
+
+.cover-title {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(56px,8vw,108px);
+  font-weight:900;
+  color:var(--white);
+  line-height:.92;
+  letter-spacing:-2px;
+  margin-bottom:22px;
+
+}
+
+.cover-sub {
+  font-size:20px;
+  font-weight:300;
+  color:#C8A96E;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  margin-bottom:40px;
+
+}
+
+.cover-line {
+  width:70px;
+  height:2px;
+  background:var(--accent);
+  margin-bottom:28px;
+
+}
+
+.cover-meta {
+  font-size:15px;
+  color:rgba(238, 238, 238, 0.822);
+  letter-spacing:2px;
+  text-transform:uppercase;
+
+}
+
+/* FULL */
+.slide-full {
+  /*position: relative;*/
+  background: var(--black);
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+}
+
+.slide-full img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: grayscale(10%) contrast(1.05);
+
+}
+
+.slide-full .label {
+  position:absolute;
+  bottom:0;
+  left:0;
+  right:0;
+  padding:18px 36px;
+  background:linear-gradient(transparent,rgba(0,0,0,.88));
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+
+}
+
+.slide-full .label-title {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(14px,1.8vw,22px);
+  font-weight:700;
+  color:var(--white);
+
+}
+
+.slide-full .label-num {
+  font-size:11px;
+  color:var(--accent);
+  letter-spacing:3px;
+  font-weight:600;
+  text-transform:uppercase;
+  white-space:nowrap;
+  margin-left:20px;
+
+}
+
+/* SPLIT */
+.slide-split {
+  background:var(--black);
+
+}
+
+.split-left {
+  width:38%;
+  padding:60px 48px 60px 60px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  border-right:1px solid rgba(255,255,255,.07);
+
+}
+
+.split-right {
+  flex:1;
+  overflow:hidden;
+
+}
+
+.split-right img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:grayscale(15%) contrast(1.05);
+
+}
+
+.split-eyebrow {
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:4px;
+  color:var(--accent);
+  text-transform:uppercase;
+  margin-bottom:14px;
+
+}
+
+.split-title {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(26px,3.2vw,46px);
+  font-weight:700;
+  color:var(--white);
+  line-height:1.1;
+  margin-bottom:18px;
+  letter-spacing:-.5px;
+
+}
+
+.split-divider {
+  width:36px;
+  height:2px;
+  background:var(--accent);
+  margin-bottom:18px;
+
+}
+
+.split-body {
+  font-size:15px;
+  color:rgba(255, 255, 255, 0.836);
+  line-height:1.8;
+  font-weight:300;
+
+}
+
+.split-num {
+  margin-top:auto;
+  padding-top:28px;
+  font-size:11px;
+  color:rgba(255,255,255,.18);
+  letter-spacing:3px;
+  text-transform:uppercase;
+
+}
+
+/* GRID 2 */
+.slide-grid2 {
+  background:var(--black);
+  display:grid!important;
+  grid-template-columns:1fr 1fr;
+  gap:3px;
+
+}
+
+.grid-cell {
+  position:relative;
+  overflow:hidden;
+
+}
+
+.grid-cell img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:grayscale(15%);
+
+}
+
+.grid-cell .cell-label {
+  position:absolute;
+  bottom:0;
+  left:0;
+  right:0;
+  padding:10px 16px;
+  background:linear-gradient(transparent,rgba(0,0,0,.8));
+  font-size:11px;
+  color:rgba(255,255,255,.8);
+  font-weight:500;
+  letter-spacing:1px;
+  text-transform:uppercase;
+
+}
+
+#s12 .right {
+  display: grid;
+  grid-template-rows: 1.3fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  height: 100%; /* Ayuda a que la grilla ocupe todo el alto de la columna derecha */
+}
+
+/* 2. Preparamos las zonas de imagen */
+#s12 .right .img-zone {
+  position: relative; /* CRÍTICO: Mantiene el texto absolute dentro de este div */
+  overflow: hidden; 
+  border-radius: 8px; /* Un pequeño borde redondeado como se ve en tu captura */
+}
+
+/* 3. Hacemos que la primera imagen ocupe las dos columnas */
+#s12 .right .img-zone:first-child { 
+  grid-column: span 2; 
+}
+
+/* 4. Forzamos a las fotos a llenar el espacio sin achatarse */
+#s12 .right .img-zone img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Recorta la imagen proporcionalmente para llenar la celda */
+  display: block;
+}
+
+/* DIVIDER */
+.slide-divider {
+  background:var(--white);
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:80px;
+
+}
+
+.divider-num {
+  font-size:clamp(80px,12vw,140px);
+  font-family:'Playfair Display',serif;
+  font-weight:900;
+  color:var(--light);
+  line-height:1;
+  margin-bottom:16px;
+
+}
+
+.divider-label {
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:6px;
+  color:var(--gray);
+  text-transform:uppercase;
+  margin-bottom:12px;
+
+}
+
+.divider-title {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(28px,4vw,52px);
+  font-weight:900;
+  color:var(--black);
+  letter-spacing:-1px;
+  line-height:1.1;
+
+}
+
+.divider-line {
+  width:50px;
+  height:3px;
+  background:var(--black);
+  margin:20px auto 0;
+
+}
+
+/* NAV */
+/* ── NAV BAR ────────────────────────────────── */
+.nav {
+  position: fixed;
+  bottom: 26px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(0,0,0,.72);
+  backdrop-filter: blur(10px);
+  padding: 9px 18px;
+  border-radius: 50px;
+  z-index: 100;
+  border: 1px solid rgba(255,255,255,.07);
+
+}
+
+/* ── DOTS TRACK (ventana deslizante) ─────────── */
+/* Ventana visible: muestra ~9 dots (ancho fijo) */
+#dots {
+  position: relative;
+  width: 110px;          /* ventana recortada */
+  height: 14px;
+  overflow: hidden;
+  /* fade suave en los bordes izq/der */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 18%,
+    black 82%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 18%,
+    black 82%,
+    transparent 100%
+  );
+
+}
+
+/* Carril interior con todos los dots en fila */
+.dots-track {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transform: translateY(-50%);
+  /* la translación X se aplica desde JS */
+  transition: transform 0.4s cubic-bezier(.4,0,.2,1);
+
+}
+
+.nav-dot {
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.22);
+  cursor: pointer;
+  transition: background .3s, transform .3s, opacity .3s;
+  opacity: 1;
+
+}
+
+.nav-dot.active {
+  background: var(--accent);
+  transform: scale(1.55);
+
+}
+
+/* ── BOTONES ─────────────────────────────────── */
+.nav-btn {
+  background: none;
+  border: 1px solid rgba(255,255,255,.18);
+  color: rgba(255,255,255,.65);
+  font-family: 'DM Sans',sans-serif;
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 1px;
+  padding: 5px 15px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all .2s;
+  white-space: nowrap;
+
+}
+
+.nav-btn:hover {
+  background: rgba(255,255,255,.1);
+  color: #fff;
+
+}
+
+.slide-counter {
+  font-size: 11px;
+  color: rgba(255,255,255,.3);
+  min-width: 44px;
+  text-align: center;
+  font-family: 'DM Sans',sans-serif;
+  letter-spacing: 1px;
+
+}
+
+.progress {
+  position:fixed;
+  top:0;
+  left:0;
+  height:2px;
+  background:var(--accent);
+  z-index:200;
+  transition:width .4s ease;
+
+}
+
+/* ANIM */
+.slide.active .anim {
+  animation:fadeUp .55s ease both;
+
+}
+
+.d1 {
+  animation-delay:.08s!important;
+
+}
+.d2 {
+  animation-delay:.2s!important;
+
+}
+.d3 {
+  animation-delay:.32s!important;
+
+}
+.d4 {
+  animation-delay:.44s!important;
+
+}
+
+@keyframes fadeUp {
+  from {
+  opacity:0;
+  transform:translateY(14px);
+
+}
+to {
+  opacity:1;
+  transform:translateY(0);
+
+}
+
+}
+
+/* ====================================================
+   MODAL / LIGHTBOX PARA IMÁGENES
+==================================================== */
+.lightbox-modal {
+  display: none; /* Oculto por defecto */
+  position: fixed;
+  z-index: 9999; 
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.9); /* Fondo bien oscuro */
+  backdrop-filter: blur(5px); /* Efecto difuminado elegante */
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Clase que agregamos con JS para mostrarlo */
+.lightbox-modal.show {
+  display: flex;
+  opacity: 1;
+}
+
+.lightbox-content {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain; /* Escala la imagen sin deformarla */
+  box-shadow: 0 4px 25px rgba(0,0,0,0.8);
+  border-radius: 4px;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  color: #f1f1f1;
+  font-size: 45px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  z-index: 10000;
+}
+
+.lightbox-close:hover {
+  color: var(--accent); /* Usa tu variable de color dorado/acento */
+}
